@@ -1,15 +1,13 @@
-var bodyParser = require('body-parser')
-var express = require("express")
-var app = express()
-var router = require("./routes/routes")
- 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
-// parse application/json
-app.use(bodyParser.json())
+const express = require("express");
+const app = express();
+const router = require("./routes/routes")
 
-app.use("/",router);
+app.use(express.json());
+app.use(express.urlencoded({extended: true}))
+app.use(router);
 
-app.listen(8686,() => {
-    console.log("Servidor rodando")
-});
+const PORT = 8080;
+
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`)
+})
